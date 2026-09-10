@@ -6,12 +6,12 @@ Sistema de punto de venta (POS) y gestión eficiente diseñado para supermercado
 
 * **Interfaz Web Moderna:** Diseño limpio y adaptable con secciones de Conócenos, Contacto y Login.
 * **Módulos de Gestión:** Secciones interactivas para Gestión de Inventario, Gestión de Clientes, Gestión de Empleados y Gestión de Ventas.
-* **Backend con Node.js:** Servidor HTTP integrado que maneja rutas y responde con datos en formato JSON.
+* **Backend con Express (Node.js):** Servidor integrado con rutas para servir tanto la interfaz estática del sitio web como una API JSON (`/users`) para la práctica.
 
 ## Tecnologías Utilizadas
 
 * **Frontend:** HTML5, CSS3, JavaScript
-* **Backend:** Node.js
+* **Backend:** Node.js, Express
 
 ## Instrucciones de Instalación y Ejecución
 
