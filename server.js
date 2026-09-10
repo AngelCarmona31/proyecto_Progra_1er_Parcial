@@ -1,28 +1,31 @@
-import http from 'http';
+import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-export const server = http.createServer((req, res) => {
-    console.log(req.url);
-    switch (req.url) {
-        case "/users":
-            res.writeHead(200, "ok", { "content-type": "application/json" });
-            res.end(JSON.stringify([
-            { servicio: "Gestión de Inventario", icon: "invntario.png" }, 
-            { servicio: "Gestión de Clientes", icon: "cliente.png" },
-            { servicio: "Gestión de Empleados", icon: "empleados.png" },
-            { servicio: "Gestión de Ventas", icon: "ventas.png" }
-]));
-            break;
-        case "/home":
-            res.writeHead(200, "ok", { "content-type": "text/html" });
-            res.end("<h1>Hola</h1>");
-            break;
-        default:
-            res.statusCode = 404;
-            res.end("not found");
-            break;
-    }
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const app = express();
+const PORT = 3000;
+
+// Esto sirve toda tu carpeta actual para que cargue los estilos e imágenes del HTML
+app.use(express.static(__dirname));
+
+// Ruta principal que muestra tu index.html
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-server.listen(3000, () => {
-    console.log("server running on port: 3000");
+// Tu ruta de los datos en JSON para el punto extra
+app.get('/users', (req, res) => {
+    res.json([
+        { servicio: "Gestión de Inventario", icon: "invntario.png" }, 
+        { servicio: "Gestión de Clientes", icon: "cliente.png" },
+        { servicio: "Gestión de Empleados", icon: "empleados.png" },
+        { servicio: "Gestión de Ventas", icon: "ventas.png" }
+    ]);
+});
+
+app.listen(PORT, () => {
+    console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
